@@ -2,15 +2,16 @@ package main
 
 import (
 	"flag"
+
 	"github.com/google/blueprint"
 	"github.com/roman-mazur/bood"
-	//"github.com/roman-mazur/bood/gomodule"
-	// TODO: Підставте свій власний пакет.
-	dkaly "github.com/dkalytovskyi/go-lab-2/build/gomodule"
+
 	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
+
+	dkaly "github.com/dkalytovskyi/go-lab-2/build/gomodule"
 )
 
 var (
@@ -20,8 +21,8 @@ var (
 
 func NewContext() *blueprint.Context {
 	ctx := bood.PrepareContext()
-	// TODO: Замініть імплементацію go_binary на власну.
 	ctx.RegisterModuleType("go_binary", dkaly.SimpleBinFactory)
+	ctx.RegisterModuleType("go_doc", dkaly.DocFactory)
 	return ctx
 }
 
