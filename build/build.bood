@@ -8,3 +8,14 @@ go_binary {
   // Build inputs.
   srcs: ["**/*.go", "../go.mod"]
 }
+
+go_doc {
+ // Module name.
+ name: "go_doc",
+
+ // Go package for docs generation.
+ pkg: "github.com/dkalytovskyi/go-lab-2/build/cmd/bood",
+
+ // Build inputs.
+ srcs: ["**/*.go"]
+}
