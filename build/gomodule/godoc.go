@@ -11,7 +11,7 @@ import (
 var (
 	// Ninja rule for executing godoc
 	goDocs = pctx.StaticRule("docs", blueprint.RuleParams{
-		Command:     "cd $workDir && godoc -url '/pkg/container/heap/' > $outputPath",
+		Command:     "cd $workDir && godoc -url $pkg > $outputPath",
 		Description: "generate docs for $pkg",
 	}, "workDir", "outputPath", "pkg")
 )
@@ -56,7 +56,7 @@ func (tb *goDocModule) GenerateBuildActions(ctx blueprint.ModuleContext) {
 		Args: map[string]string{
 			"outputPath": outputPath,
 			"workDir":    ctx.ModuleDir(),
-			"pkg":        tb.properties.Pkg,
+			"pkg":        "src/" + tb.properties.Pkg,
 		},
 	})
 }
