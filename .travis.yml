@@ -1,0 +1,15 @@
+language: go
+go: "1.14"
+before_script:
+  - go vet ./...
+install:
+  - go get -u golang.org/x/tools/cmd/godoc
+  - sudo apt-get update
+  - sudo apt-get install ninja-build
+  - wget https://github.com/roman-mazur/bood/releases/download/v0.0.5/bood-linux
+  - sudo chmod +x bood-linux
+  - mv bood-linux bood
+  - mv bood $GOPATH/bin
+script:
+  - cd $GOPATH/src/github.com/dkalytovskyi/go-lab-2/build
+  - bood
