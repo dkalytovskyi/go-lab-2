@@ -4,21 +4,9 @@ before_script:
   - go vet ./...
 install:
   - go get -u golang.org/x/tools/cmd/godoc
-  - wget https://github.com/ninja-build/ninja/releases/download/v1.10.0/ninja-linux.zip
-  - sudo unzip ninja-linux.zip
-  - mv ninja $GOPATH/bin
-  - wget https://github.com/roman-mazur/bood/releases/download/v0.0.5/bood-linux
-  - sudo chmod +x bood-linux
-  - mv bood-linux bood
-  - mv bood $GOPATH/bin
+  - ./travis_scripts/get_ninja.sh
+  - ./travis_scripts/get_bood.sh
 script:
   - cd $GOPATH/src/github.com/dkalytovskyi/go-lab-2/build
-  - mv initial_bood/build.bood .
-  - bood
-  - mv build.bood initial_bood/
-  - mv custom_bood/build.bood .
-  - cd out/bin/
-  - mv bood $GOPATH/bin
-  - cd ../../
+  - ../travis_scripts/create_custom_bood.sh
   - bood 
-  - mv build.bood custom_bood
